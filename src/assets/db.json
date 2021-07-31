@@ -1,0 +1,39 @@
+{
+    "products": [
+        {
+            "id": "457e351d-7feb-48d7-8b64-bd1885bcd49e",
+            "name": "Galaxy M31",
+            "description": "A smartphone brand",
+            "manufacturer": "Samsung",
+            "price": 17500
+        },
+        {
+            "id": "9bd7beea-bffb-4169-9112-f53dfc3739b1",
+            "name": "Moto G5 Plus",
+            "description": "A smartphone",
+            "manufacturer": "Lenovo",
+            "price": 11500
+        },
+        {
+            "id": "0e9c5f17-cfcf-4892-a767-25737fb878c2",
+            "name": "Dell Inspiron",
+            "description": "A laptop",
+            "manufacturer": "Dell Inc",
+            "price": 50000
+        },
+        {
+            "id": "74ec0580-4c3b-454b-bed9-a0227080c264",
+            "name": "Epson Printer",
+            "description": "A printer",
+            "manufacturer": "Epson",
+            "price": 14500
+        },
+        {
+            "id": "0e7a8cc0-9b32-4c2c-bb45-5d30cb558655",
+            "name": "Mi A2",
+            "description": "A smartphone",
+            "manufacturer": "Xiomi",
+            "price": 13500
+        }
+    ]
+}
