@@ -1,15 +1,27 @@
-import { shallow } from 'enzyme';
+import { screen, render } from '../test/testUtils';
 
 import App from './App';
-import { findByTestAttr } from '../test/testUtils';
 
-const setup = () => {
-  return shallow(<App />);
-};
+describe('<HomePage />', () => {
+  beforeEach(() => {
+      render(<App />);
+  });
 
-it('renders without error', () => {
-  const wrapper = setup();
-  const appComponent =  findByTestAttr(wrapper, 'component-app');
+  it('renders `<Header />` component', () => {
+      const headerComponent = screen.getByTestId('component-header');
 
-  expect(appComponent.length).toBe(1);
+      expect(headerComponent).toBeInTheDocument();
+  });
+
+  it('renders `<ProductsImage />` component', () => {
+      const productsImageComponent = screen.getByTestId('component-products-image');
+
+      expect(productsImageComponent).toBeInTheDocument();
+  });
+
+  it('renders `<Router />` component', () => {
+      const routerComponent = screen.getByTestId('component-router');
+
+      expect(routerComponent).toBeInTheDocument();
+  });
 });
