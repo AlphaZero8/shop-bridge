@@ -1,0 +1,26 @@
+html {
+  box-sizing: border-box;
+  min-width: fit-content;
+
+  .sb-link {
+    text-decoration: none;
+  }
+}
+
+@media (max-width: 37.5em) {
+  html {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 28.125em) {
+  html {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 18.75em) {
+  html {
+    font-size: 10px;
+  }
+}
