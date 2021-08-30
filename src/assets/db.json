@@ -1,39 +1,116 @@
 {
-    "products": [
-        {
-            "id": "457e351d-7feb-48d7-8b64-bd1885bcd49e",
-            "name": "Galaxy M31",
-            "description": "A smartphone brand",
-            "manufacturer": "Samsung",
-            "price": 17500
-        },
-        {
-            "id": "9bd7beea-bffb-4169-9112-f53dfc3739b1",
-            "name": "Moto G5 Plus",
-            "description": "A smartphone",
-            "manufacturer": "Lenovo",
-            "price": 11500
-        },
-        {
-            "id": "0e9c5f17-cfcf-4892-a767-25737fb878c2",
-            "name": "Dell Inspiron",
-            "description": "A laptop",
-            "manufacturer": "Dell Inc",
-            "price": 50000
-        },
-        {
-            "id": "74ec0580-4c3b-454b-bed9-a0227080c264",
-            "name": "Epson Printer",
-            "description": "A printer",
-            "manufacturer": "Epson",
-            "price": 14500
-        },
-        {
-            "id": "0e7a8cc0-9b32-4c2c-bb45-5d30cb558655",
-            "name": "Mi A2",
-            "description": "A smartphone",
-            "manufacturer": "Xiomi",
-            "price": 13500
-        }
-    ]
+  "products": [
+    {
+      "id": "457e351d-7feb-48d7-8b64-bd1885bcd49e",
+      "name": "Galaxy M31",
+      "description": "A smartphone brand",
+      "manufacturer": "Samsung",
+      "price": 17500
+    },
+    {
+      "id": "9bd7beea-bffb-4169-9112-f53dfc3739b1",
+      "name": "Moto G5 Plus",
+      "description": "A smartphone",
+      "manufacturer": "Lenovo",
+      "price": 11500
+    },
+    {
+      "id": "0e9c5f17-cfcf-4892-a767-25737fb878c2",
+      "name": "Dell Inspiron",
+      "description": "A laptop",
+      "manufacturer": "Dell Inc",
+      "price": 50000
+    },
+    {
+      "id": "74ec0580-4c3b-454b-bed9-a0227080c264",
+      "name": "Epson Printer",
+      "description": "A printer",
+      "manufacturer": "Epson",
+      "price": 14500
+    },
+    {
+      "id": "0e7a8cc0-9b32-4c2c-bb45-5d30cb558655",
+      "name": "Mi A2",
+      "description": "A smartphone",
+      "manufacturer": "Xiomi",
+      "price": 13500
+    },
+    {
+      "name": "N",
+      "manufacturer": "M",
+      "price": 1,
+      "description": "D",
+      "id": "c8dfdbbb-d79f-421f-b783-7ac6db25bfd9"
+    },
+    {
+      "name": "N1",
+      "manufacturer": "M",
+      "price": 1,
+      "description": "D",
+      "id": "5ece26ad-73d1-4c7e-956d-cd5f01f4845e"
+    },
+    {
+      "name": "N2",
+      "manufacturer": "M",
+      "price": 1,
+      "description": "D",
+      "id": "8b3b8b63-a377-49db-b5f9-e18c4a58a9ec"
+    },
+    {
+      "name": "N3",
+      "manufacturer": "M",
+      "price": 1,
+      "description": "D",
+      "id": "08a2861c-5660-41a3-8f28-2e90e8eb45d6"
+    },
+    {
+      "name": "N4",
+      "manufacturer": "M",
+      "price": 1,
+      "description": "D",
+      "id": "08bf58c1-1546-411c-bd31-79dc8a4ca030"
+    },
+    {
+      "name": "Name",
+      "manufacturer": "M",
+      "price": 1,
+      "description": "D",
+      "id": "78087087-3922-43ee-af5f-728df9d9e1bf"
+    },
+    {
+      "name": "Name2",
+      "manufacturer": "M",
+      "price": 1,
+      "description": "D",
+      "id": "224c47d4-e2b7-4b53-9954-997bdcf3103b"
+    },
+    {
+      "name": "Name3",
+      "manufacturer": "M",
+      "price": 1,
+      "description": "D",
+      "id": "7268d786-aebe-4ae9-beec-b95d4224b54a"
+    },
+    {
+      "name": "Name4",
+      "manufacturer": "M",
+      "price": 1,
+      "description": "D",
+      "id": "c1548db5-5f9f-49e4-a926-633ef64cb7ed"
+    },
+    {
+      "name": "Name6",
+      "manufacturer": "M",
+      "price": 1,
+      "description": "D",
+      "id": "dfa4a9a4-c765-47db-b348-c7d1ff7a6474"
+    },
+    {
+      "name": "Name7",
+      "manufacturer": "M",
+      "price": 1,
+      "description": "D",
+      "id": "5b8a0293-09e5-4283-bf6a-ac5a88640109"
+    }
+  ]
 }
