@@ -1,0 +1,74 @@
+@import "../../constants/scss/colors.scss";
+
+.sb-paginated-table-container {
+    // margin: 0 auto;
+    // max-width: 85vw;
+    padding: 0 5rem 2rem;
+    position: relative;
+
+    .sb-table-container {
+        margin-top: 1rem;
+        max-height: 27.5rem;
+
+        .sb-icon {
+            color: $curious-blue;
+
+            &.sb-icon-negative {
+                color: red;
+            }
+
+            &:hover {
+                cursor: pointer;
+                transform: scale(1.5);
+            }
+        }
+    }
+
+    .sb-pagination {
+        position: absolute;
+        right: 4rem;
+        bottom: 0;
+    }
+}
+
+@media (max-width: 90em) {
+    .sb-paginated-table-container {
+        //   max-width: 90vw;
+        padding: 0 3.5rem 2rem;
+    }
+}
+
+@media (max-width: 64em) {
+    .sb-paginated-table-container {
+        //   max-width: 90vw;
+        padding: 0 2.5rem 2rem;
+    }
+}
+
+@media (max-width: 50em) {
+    .sb-paginated-table-container {
+        //   max-width: 90vw;
+        padding: 0 1.5rem 2rem;
+    }
+}
+
+@media (max-width: 37.5em) {
+    .sb-paginated-table-container {
+        //   max-width: 90vw;
+        padding: 0 1rem 2rem;
+    }
+}
+
+@media (max-width: 28.125em) {
+    .sb-paginated-table-container {
+        //   max-width: 95vw;
+        padding: 0 0.5rem 2rem;
+    }
+}
+
+@media (max-width: 18.75em) {
+    .sb-paginated-table-container {
+        //   max-width: 100%;
+        padding: 0;
+    }
+}
