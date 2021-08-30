@@ -1,0 +1,16 @@
+@import "../../constants/scss/colors.scss";
+
+.summary-container {
+    background: $azure;
+    color: white;
+    position: relative;
+    left: 35%;
+    text-align: center;
+    width: 30%;
+    padding: 0.75rem 1rem;
+    border-radius: 20px;
+
+    .features-list {
+        list-style: none;
+    }
+}
