@@ -1,5 +1,5 @@
 import userEvent from "@testing-library/user-event";
-import { fireEvent, render, screen } from "../../../test/testUtils";
+import { fireEvent, render, screen, waitFor, waitForElementToBeRemoved } from "../../../test/testUtils";
 
 import AddProduct from "./AddProduct";
 
@@ -10,6 +10,16 @@ jest.mock('../../store/productsSlice', () => ({
 describe('<AddProduct />', () => {
     beforeEach(() => {
         render(<AddProduct />);
+    });
+
+    describe('render', () => {
+        // @TODO
+        it('shows the page title - Add a new product', () => {});
+
+        // @TODO
+        it('shows the form', () => {
+
+        });
     });
 
     describe('form input', () => {
@@ -71,7 +81,7 @@ describe('<AddProduct />', () => {
             manufacturerField: screen.getByLabelText(/manufacturer/i),
             priceField: screen.getByLabelText(/price/i),
             descriptionField: screen.getByLabelText(/description/i),
-            addBtn: screen.getByText(/add/i),
+            addBtn: screen.getByText('Add'),
             cancelBtn: screen.getByText(/cancel/i),
         });
 
@@ -96,12 +106,13 @@ describe('<AddProduct />', () => {
             jest.useFakeTimers();
         });
 
-        afterAll(() => {
+        afterEach(() => {
+            jest.runOnlyPendingTimers();
             jest.useRealTimers();
         });
 
         it('highlights requiredness when form is submitted with empty fields', async () => {
-            const addBtn = screen.getByText(/add/i);
+            const addBtn = screen.getByText('Add');
             userEvent.click(addBtn);
 
             const errors = await screen.findAllByText(/.+?(?=required)/i);
@@ -133,5 +144,115 @@ describe('<AddProduct />', () => {
         it('disables all form fields and buttons while submission', async () => { });
 
         it('Shows circular spinner in submit button while submission', () => { });
+    });
+
+    describe('during form submission', () => {
+        // beforeEach(() => {
+        //     jest.useFakeTimers();
+        // });
+
+        // afterEach(() => {
+        //     jest.runOnlyPendingTimers();
+        //     jest.useRealTimers();
+        // });
+
+        const getAllFields = () => ({
+            nameField: screen.getByLabelText(/name/i),
+            manufacturerField: screen.getByLabelText(/manufacturer/i),
+            priceField: screen.getByLabelText(/price/i),
+            descriptionField: screen.getByLabelText(/description/i),
+            addBtn: screen.getByText('Add'),
+            cancelBtn: screen.getByText(/cancel/i),
+        });
+
+        const fillAndSubmitForm = () => {
+            const {
+                nameField,
+                manufacturerField,
+                priceField,
+                descriptionField,
+                addBtn,
+            } = getAllFields();
+
+            userEvent.type(nameField, 'name');
+            userEvent.type(manufacturerField, 'manufacturer');
+            userEvent.type(priceField, '1');
+            userEvent.type(descriptionField, 'description');
+
+            userEvent.click(addBtn);
+        };
+
+        it('disables name field', () => {
+            fillAndSubmitForm();
+
+            const nameField = screen.getByLabelText('name');
+            expect(nameField).toBeDisabled();
+
+            waitFor(() => {
+                screen.getByLabelText('name').textContent = '';
+            });
+        });
+
+        it('disables manufacturer field', () => {
+            fillAndSubmitForm();
+
+            const manufacturerField = screen.getByLabelText('manufacturer');
+            expect(manufacturerField).toBeDisabled();
+
+            waitFor(() => {
+                screen.getByLabelText('manufacturer').textContent = '';
+            });
+        });
+
+        it('disables price field', () => {
+            fillAndSubmitForm();
+
+            const priceField = screen.getByLabelText('price');
+            expect(priceField).toBeDisabled();
+
+            waitFor(() => {
+                screen.getByLabelText('price').textContent = '';
+            });
+        });
+
+        it('disables description field', () => {
+            fillAndSubmitForm();
+
+            const descriptionField = screen.getByLabelText('description');
+            expect(descriptionField).toBeDisabled();
+
+            waitFor(() => {
+                screen.getByLabelText('description').textContent = '';
+            });
+        });
+
+        it.skip('disables Add button', () => {
+            fillAndSubmitForm();
+
+            const addBtn = screen.getByText('Add');
+            expect(addBtn).toBeDisabled();
+
+            waitForElementToBeRemoved(() => {
+                screen.getByRole(/progressbar/i);
+            });
+            // waitForElementToBeRemoved(() => {
+            //     screen.getByText(/product added successfully/i);
+            // });
+            // waitFor(() => {
+            //     screen.getByLabelText('description').textContent = '';
+            //         // screen.getByText(/product added successfully/i);
+            // });
+        });
+
+        it.skip('disables Cancel button', () => {
+            fillAndSubmitForm();
+
+            const cancelBtn = screen.getByText('Cancel');
+            expect(cancelBtn).toBeDisabled();
+
+            waitFor(() => {
+                screen.getByText(/product added successfully/i);
+            });
+        });
     });
 });

@@ -8,6 +8,7 @@ import MuiAlert from '@material-ui/lab/Alert';
 import Backdrop from '@material-ui/core/Backdrop';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import makeStyles from '@material-ui/core/styles/makeStyles';
+import Typography from "@material-ui/core/Typography";
 import { sbTheme } from '../../constants/scss/theme';
 
 import { TEXT_UPDATE } from "../../constants/productConstants";
@@ -45,7 +46,6 @@ const EditProduct = () => {
                 await dispatch(fetchProducts());
             } catch (err) {
                 const { apiError } = err;
-                console.log(apiError);
 
                 setSnackbarMessage(apiError);
                 setSnackbarSeverity('error');
@@ -129,6 +129,9 @@ const EditProduct = () => {
 
     return (
         <>
+        <Typography variant="h5" className="sb-sub-heading">
+            Edit {matchingProduct ? matchingProduct.name : 'Product' }
+        </Typography>
             <Formik
                 enableReinitialize
                 initialValues={{

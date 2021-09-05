@@ -4,11 +4,14 @@ import * as yup from 'yup';
 
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
+import Typography from "@material-ui/core/Typography";
 
 import { addProduct } from "../../store/productsSlice";
 import ProductForm from "../ProductForm/ProductForm";
 import { TEXT_ADD } from "../../constants/productConstants";
 import { useEffect, useRef, useState } from 'react';
+
+import './AddProduct.scss';
 
 const Alert = (props) => {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
@@ -80,6 +83,9 @@ const AddProduct = () => {
 
     return (
         <>
+        <Typography variant="h5" className="sb-sub-heading">
+            Add a new product
+        </Typography>
             <Formik
                 initialValues={{
                     name: '',

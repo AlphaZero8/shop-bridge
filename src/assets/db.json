@@ -9,7 +9,7 @@
     },
     {
       "id": "9bd7beea-bffb-4169-9112-f53dfc3739b1",
-      "name": "Moto G5 Plus",
+      "name": "Moto G5 Plus+",
       "description": "A smartphone",
       "manufacturer": "Lenovo",
       "price": 11500
@@ -75,42 +75,28 @@
       "manufacturer": "M",
       "price": 1,
       "description": "D",
-      "id": "78087087-3922-43ee-af5f-728df9d9e1bf"
+      "id": "ad002730-7c76-4d8e-aeaf-73c4b34c2805"
     },
     {
       "name": "Name2",
       "manufacturer": "M",
       "price": 1,
       "description": "D",
-      "id": "224c47d4-e2b7-4b53-9954-997bdcf3103b"
+      "id": "de7d89e5-4322-4b3c-b5d2-1adf1a9c23ca"
     },
     {
       "name": "Name3",
       "manufacturer": "M",
       "price": 1,
       "description": "D",
-      "id": "7268d786-aebe-4ae9-beec-b95d4224b54a"
+      "id": "cf23ef7d-37b2-4882-acf8-3092a0b3c135"
     },
     {
       "name": "Name4",
       "manufacturer": "M",
       "price": 1,
       "description": "D",
-      "id": "c1548db5-5f9f-49e4-a926-633ef64cb7ed"
-    },
-    {
-      "name": "Name6",
-      "manufacturer": "M",
-      "price": 1,
-      "description": "D",
-      "id": "dfa4a9a4-c765-47db-b348-c7d1ff7a6474"
-    },
-    {
-      "name": "Name7",
-      "manufacturer": "M",
-      "price": 1,
-      "description": "D",
-      "id": "5b8a0293-09e5-4283-bf6a-ac5a88640109"
+      "id": "e36eaf70-1671-45bb-9150-1624ab8fc110"
     }
   ]
 }
