@@ -18,8 +18,6 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Alert from '@material-ui/lab/Alert';
-import IconButton from '@material-ui/core/IconButton';
-import CloseIcon from '@material-ui/icons/Close';
 
 import LoadingTable from '../LoadingTable/LoadingTable';
 import Toast from '../Toast/Toast';
@@ -110,42 +108,24 @@ const PaginatedTable = () => {
         }
 
         setDeleteToastOpen(false);
-    }
-
-    const handleErrorToastClose = (event, reason) => {
-        if (reason === 'clickaway') {
-            return;
-        }
-
-        setLoadingErrorToast(false);
     };
 
     let content;
 
     if (loading === 'pending') {
-        content = <LoadingTable rowCount={rowsPerPage} />;
+        content = <LoadingTable data-testid="table-loading" rowCount={rowsPerPage} />;
     } else if (loading === 'idle') {
         content = loadingError ? (
-            <Toast
+            <Alert
+                className="sb-error"
                 open={loadingErrorToast}
-                onClose={handleErrorToastClose}
                 severity="error"
-                variant="filled"
-                action={
-                    <IconButton
-                        aria-label="close"
-                        color="inherit"
-                        size="small"
-                        onClick={() => setLoadingErrorToast(false)}
-                    >
-                        <CloseIcon fontSize="inherit" />
-                    </IconButton>
-                }
-                message={loadingError.apiError}
-            />
+            >
+                {loadingError.apiError}
+            </Alert>
         ) : (
             <>
-                <TableContainer className="sb-table-container">
+                <TableContainer data-testid="table-container" className="sb-table-container">
                     <Table stickyHeader aria-label="sticky table">
                         <TableHead>
                             <TableRow>
@@ -160,7 +140,7 @@ const PaginatedTable = () => {
                                 ))}
                             </TableRow>
                         </TableHead>
-                        <TableBody>
+                        <TableBody data-testid="table-body">
                             {products.length ? (
                                 products.slice(activePage * rowsPerPage, activePage * rowsPerPage + rowsPerPage).map((product, index) => (
                                     <TableRow hover key={product.id}>
@@ -174,11 +154,15 @@ const PaginatedTable = () => {
                                                                 to={`/products/${product.id}`}
                                                                 className="sb-link"
                                                             >
-                                                                <EditIcon className="sb-icon" />
+                                                                <EditIcon
+                                                                    data-testid="icon-edit"
+                                                                    className="sb-icon"
+                                                                />
                                                             </Link>
                                                         </TableCell>
                                                         <TableCell width={column.width} align="center">
                                                             <DeleteIcon
+                                                                data-testid="icon-delete"
                                                                 className="sb-icon sb-icon-negative"
                                                                 onClick={(e) => handleDialogOpen(e, product)}
                                                             />
@@ -203,6 +187,7 @@ const PaginatedTable = () => {
                         </TableBody>
                     </Table>
                 </TableContainer>
+                <div data-testid="pagination">
                     <TablePagination
                         rowsPerPageOptions={[5, 10, 25, 100]}
                         component="div"
@@ -212,6 +197,7 @@ const PaginatedTable = () => {
                         onPageChange={handleChangePage}
                         onRowsPerPageChange={handleChangeRowsPerPage}
                     />
+                </div>
                 <Dialog
                     open={deleteDialogOpen}
                     onClose={handleDialogClose}
@@ -242,7 +228,7 @@ const PaginatedTable = () => {
                     message={deleteToastMessage}
                 />
             </>
-        )
+        );
     }
 
     return (
