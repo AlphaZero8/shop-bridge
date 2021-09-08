@@ -86,6 +86,7 @@ const AddProduct = () => {
         <Typography variant="h5" className="sb-sub-heading">
             Add a new product
         </Typography>
+        <div data-testid="form-add-product">
             <Formik
                 initialValues={{
                     name: '',
@@ -100,6 +101,7 @@ const AddProduct = () => {
                     <ProductForm {...props} submitBtnText={TEXT_ADD} />
                 )}
             </Formik>
+        </div>
             <Snackbar
                 key={snackbarMessage}
                 open={snackbarOpen}

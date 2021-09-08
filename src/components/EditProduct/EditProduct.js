@@ -35,12 +35,13 @@ const EditProduct = () => {
 
     const dispatch = useDispatch();
     const { productId } = useParams();
-    console.log(productId);
     const products = useSelector(state => state.products.products);
+    console.log(products);
     const loading = useSelector(state => state.products.loading);
     const mountedRef = useRef();
 
     useEffect(() => {
+        console.log('in useEffect 1', products);
         const loadProducts = async () => {
             try {
                 await dispatch(fetchProducts());
@@ -53,10 +54,12 @@ const EditProduct = () => {
             }
         };
         loadProducts();
-    }, [dispatch]);
+    }, [dispatch, products]);
 
     useEffect(() => {
+        console.log('in useEffect 2', products);
         const match = products.find(product => product.id === productId);
+        console.log(match);
         setMatchingProduct(match);
     }, [products, productId]);
 
@@ -86,19 +89,21 @@ const EditProduct = () => {
     };
 
     const handleSubmit = async (values, { setSubmitting, setErrors }) => {
-        console.log(values);
         const matchingProductCopy = { ...matchingProduct };
         delete matchingProductCopy.id;
         const hasChanged = JSON.stringify(matchingProductCopy) !== JSON.stringify(values);
 
+        console.log(hasChanged);
         if (hasChanged) {
                 try {
+                    console.log('in try, matching product', matchingProduct);
                     await dispatch(editProduct(matchingProduct.id, values));
 
                     setSnackbarMessage('Product edited successfully! :)');
                     setSnackbarSeverity('success');
                     setSnackbarOpen(true);
                 } catch (err) {
+                    console.log('in catch');
                     console.log(err);
                     const { duplicateProductError, apiError } = err;
     

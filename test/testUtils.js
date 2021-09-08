@@ -12,8 +12,6 @@ function render(
         ...renderOptions
     } = {}
 ) {
-    console.log(preloadedState);
-    console.log(store.getState());
     function Wrapper({ children }) {
         return (
             <Provider store={store}>

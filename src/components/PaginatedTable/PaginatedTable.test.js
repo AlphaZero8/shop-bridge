@@ -1,5 +1,6 @@
 import userEvent from "@testing-library/user-event";
-import { render, screen, within } from "../../../test/testUtils";
+import axios from "axios";
+import { act, findByText, render, screen, waitForElementToBeRemoved, within } from "../../../test/testUtils";
 import PaginatedTable from "./PaginatedTable";
 
 describe('<PaginatedTable />', () => {
@@ -381,16 +382,143 @@ describe('<PaginatedTable />', () => {
                 });
             });
 
-            // @TODO
-            describe('edit action', () => {
-                it('opens the edit form when edit icon is clicked for a particular product', () => {});
-            });
+            // @TODO -> to be added to App.js tests
+            // describe.only('edit action', () => {
+            //     it('opens the edit form when edit icon is clicked for a particular product', () => {
+            // const products = [
+            //     {
+            //         id: 'unique #1',
+            //         name: 'p1',
+            //         manufacturer: 'm1',
+            //         price: 100,
+            //         description: 'd1',
+            //     },
+            //     {
+            //         id: 'unique #2',
+            //         name: 'p2',
+            //         manufacturer: 'm2',
+            //         price: 200,
+            //         description: 'd2',
+            //     },
+            // ];
 
-            // @TODO
+            // render(<PaginatedTable />, {
+            //     preloadedState: {
+            //         products: {
+            //             loading: 'idle',
+            //             products,
+            //         },
+            //     },
+            // });
+
+            // const row1 = screen.getByRole('cell', { name: 'p1' }).closest('tr');
+            // const editIcon = within(row1).getByTestId('icon-edit');
+            // userEvent.click(editIcon);
+
+            //         const editForm = screen.getByText(/edit p1/i);
+
+            //         expect(editForm).toBeInTheDocument();
+            //     });
+            // });
+
             describe('delete action', () => {
-                it('opens up a confirmation modal when delete icon is clicked', () => {});
-                it('shows success message when delete succeeds', () => {});
-                it('shows error message when delete fails', () => {});
+                const products = [
+                    {
+                        id: 'unique #1',
+                        name: 'p1',
+                        manufacturer: 'm1',
+                        price: 100,
+                        description: 'd1',
+                    },
+                    {
+                        id: 'unique #2',
+                        name: 'p2',
+                        manufacturer: 'm2',
+                        price: 200,
+                        description: 'd2',
+                    },
+                ];
+
+                beforeEach(() => {
+                    // jest.useFakeTimers();
+                    render(<PaginatedTable />, {
+                        preloadedState: {
+                            products: {
+                                loading: 'idle',
+                                products,
+                            },
+                        },
+                    });
+                    const row1 = screen.getByRole('cell', { name: 'p1' }).closest('tr');
+                    const deleteIcon = within(row1).getByTestId('icon-delete');
+                    userEvent.click(deleteIcon);
+                });
+
+                // afterEach(() => {
+                //     jest.runOnlyPendingTimers();
+                //     jest.useRealTimers();
+                // });
+
+                it('opens up a confirmation modal when delete icon is clicked', () => {
+                    const confirmationModal = screen.getByRole('dialog');
+
+                    expect(confirmationModal).toBeInTheDocument();
+                });
+
+                describe('delete succeeds', () => {
+                    beforeEach(() => {
+                        const confirmationModal = screen.getByRole('dialog');
+                        const deleteBtn = within(confirmationModal).getByRole('button', { name: 'Delete' });
+
+                        userEvent.click(deleteBtn);
+                    });
+
+                    // act warnings
+                    it('shows success message when delete succeeds', async () => {
+                        const successMessage = await screen.findByText(/product deleted successfully/i);
+
+                        expect(successMessage).toBeInTheDocument();
+                    });
+
+                    it.skip('removes the entry from the table', async () => {
+                        // await waitForElementToBeRemoved(() => {
+                        //     screen.getByText(/product deleted successfully/i);
+                        // });
+
+                        const tableBody = screen.getByTestId('table-body');
+
+                        const rows = within(tableBody).getAllByRole('row');
+
+                        expect(rows).toHaveLength(1);
+                    });
+                });
+
+
+                it.skip('shows error message when delete fails', async () => {
+                    axios.delete.mockImplementationOnce(() => Promise.reject({
+                        apiError: 'Something went wrong, please try again!'
+                    }));
+
+                    render(<PaginatedTable />, {
+                        preloadedState: {
+                            products: {
+                                loading: 'idle',
+                                products,
+                            },
+                        },
+                    });
+                    const row1 = screen.getByRole('cell', { name: 'p1' }).closest('tr');
+                    const deleteIcon = within(row1).getByTestId('icon-delete');
+                    userEvent.click(deleteIcon);
+
+                    const confirmationModal = screen.getByRole('dialog');
+                    const deleteBtn = within(confirmationModal).getByRole('button', { name: 'Delete' });
+
+                    userEvent.click(deleteBtn);
+                    const errorMsg = await screen.findByText(/something went wrong/i);
+
+                    expect(errorMsg).toBeInTheDocument();
+                });
             });
         });
     });

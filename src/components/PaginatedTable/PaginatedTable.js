@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useState } from 'react';
+import { Fragment, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -35,7 +35,7 @@ const PaginatedTable = () => {
     const [deleteToastOpen, setDeleteToastOpen] = useState(false);
     const [deleteToastMessage, setDeleteToastMessage] = useState('');
     const [deleteToastSeverity, setDeleteToastSeverity] = useState('');
-    const [loadingErrorToast, setLoadingErrorToast] = useState(false);
+    // const [loadingErrorToast, setLoadingErrorToast] = useState(false);
     const [productBeingDeleted, setProductBeingDeleted] = useState(null);
 
     const dispatch = useDispatch();
@@ -54,13 +54,13 @@ const PaginatedTable = () => {
         dispatch(updateActivePageNumber(newPageNumber));
     };
 
-    useEffect(() => {
-        if (loading === 'idle' && loadingError) {
-            setLoadingErrorToast(true);
-        } else {
-            setLoadingErrorToast(false);
-        }
-    }, [loading, loadingError]);
+    // useEffect(() => {
+    //     if (loading === 'idle' && loadingError) {
+    //         setLoadingErrorToast(true);
+    //     } else {
+    //         setLoadingErrorToast(false);
+    //     }
+    // }, [loading, loadingError]);
 
     const handleChangePage = (event, newPage) => {
         dispatch(updateActivePageNumber(newPage));
@@ -111,6 +111,7 @@ const PaginatedTable = () => {
     };
 
     let content;
+    console.log(products);
 
     if (loading === 'pending') {
         content = <LoadingTable data-testid="table-loading" rowCount={rowsPerPage} />;
@@ -118,7 +119,7 @@ const PaginatedTable = () => {
         content = loadingError ? (
             <Alert
                 className="sb-error"
-                open={loadingErrorToast}
+                // open={loadingErrorToast}
                 severity="error"
             >
                 {loadingError.apiError}

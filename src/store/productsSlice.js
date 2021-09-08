@@ -114,15 +114,16 @@ export const {
 } = productsSlice.actions;
 
 const timeout = (ms) => {
-    console.log('in timeout');
+    // console.log('in timeout');
     return new Promise(resolve => setTimeout(resolve, ms));
 };
 
 export const fetchProducts = () => async (dispatch, getState) => {
-    console.log('fetchProducts called');
+    console.log('in fetchProducts');
     dispatch(productsLoading());
     const state = await getState();
     const products = state.products.products;
+    console.log(products);
 
     if (products.length) {
         return dispatch(productsReceived(products));
@@ -136,6 +137,7 @@ export const fetchProducts = () => async (dispatch, getState) => {
 
                 dispatch(productsReceived(response.data));
             } catch (err) {
+                console.log('error', err);
                 dispatch(productsLoadingFailed(err));
 
                 return Promise.reject(err);
@@ -197,11 +199,17 @@ export const editProduct = (productId, inputData) => async (dispatch, getState) 
     const state = await getState();
     const products = state.products.products;
 
+    console.log('products in state', products);
+    console.log('productId received in params', productId);
+    console.log('inputData received in params', inputData);
+
     const isDuplicate = products.some(product => (
         product.name === inputData.name
         && product.manufacturer === inputData.manufacturer
         && product.id !== productId
     ));
+
+    console.log('isduplicate', isDuplicate);
 
     if (isDuplicate) {
         dispatch(productUpdateFailed());
@@ -221,7 +229,7 @@ export const editProduct = (productId, inputData) => async (dispatch, getState) 
         } catch (err) {
             dispatch(productUpdateFailed());
 
-            return Promise.reject({ duplicateNameEror: null, ...err });
+            return Promise.reject({ duplicateNameError: null, ...err });
         }
     }
 };
