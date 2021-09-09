@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { v4 as uuidv4 } from 'uuid';
 
 import * as productsApi from "../api/productsApi";
+import { compareIgnoreCase, trimFormData } from "../utils/helpers";
 
 const initialProductsState = {
     products: [],
@@ -130,18 +131,18 @@ export const fetchProducts = () => async (dispatch, getState) => {
     } else {
         // console.log('no products found -> in else');
         // setTimeout(async () => {
-            try {
-                await timeout(3000);
-                const response = await productsApi.getProducts();
-                // console.log('fetchProducts response', response);
+        try {
+            await timeout(3000);
+            const response = await productsApi.getProducts();
+            // console.log('fetchProducts response', response);
 
-                dispatch(productsReceived(response.data));
-            } catch (err) {
-                // console.log('error', err);
-                dispatch(productsLoadingFailed(err));
+            dispatch(productsReceived(response.data));
+        } catch (err) {
+            // console.log('error', err);
+            dispatch(productsLoadingFailed(err));
 
-                return Promise.reject(err);
-            }
+            return Promise.reject(err);
+        }
         // }, 3000);
     }
 };
@@ -152,9 +153,9 @@ export const addProduct = (inputData) => async (dispatch, getState) => {
     const products = state.products.products;
 
     const isDuplicate = products.some(product => (
-        product.name === inputData.name
-        && product.manufacturer === inputData.manufacturer)
-    );
+        compareIgnoreCase(product.name, inputData.name)
+        && compareIgnoreCase(product.manufacturer, inputData.manufacturer)
+    ));
 
     if (isDuplicate) {
         dispatch(productAddFailed());
@@ -172,7 +173,8 @@ export const addProduct = (inputData) => async (dispatch, getState) => {
         // setTimeout(() => {
         try {
             await timeout(2000);
-            const response = await productsApi.addProduct(inputData);
+            const trimmedInputData = trimFormData(inputData);
+            const response = await productsApi.addProduct(trimmedInputData);
             dispatch(productAdded(response.data));
             // .then((response) => {
             //     return setTimeout(() => {
@@ -204,8 +206,8 @@ export const editProduct = (productId, inputData) => async (dispatch, getState) 
     // console.log('inputData received in params', inputData);
 
     const isDuplicate = products.some(product => (
-        product.name === inputData.name
-        && product.manufacturer === inputData.manufacturer
+        compareIgnoreCase(product.name, inputData.name)
+        && compareIgnoreCase(product.manufacturer, inputData.manufacturer)
         && product.id !== productId
     ));
 
@@ -224,7 +226,8 @@ export const editProduct = (productId, inputData) => async (dispatch, getState) 
     } else {
         try {
             await timeout(2000);
-            const response = await productsApi.updateProduct(productId, inputData);
+            const trimmedInputData = trimFormData(inputData);
+            const response = await productsApi.updateProduct(productId, trimmedInputData);
             dispatch(productUpdated(response.data));
         } catch (err) {
             dispatch(productUpdateFailed());
