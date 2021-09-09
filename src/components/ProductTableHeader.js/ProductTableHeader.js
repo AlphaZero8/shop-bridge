@@ -13,13 +13,13 @@ import './ProductTableHeader.scss';
 const ProductTableHeader = () => {
     return (
         <div className="sb-table-header">
-                <Typography className="sb-heading" variant="h5">
-                    {PRODUCT_TABLE_TITLE}
-                </Typography>
-                <Link to="/new-product" className="sb-link">
-                    <Button variant="contained" color="primary">{TEXT_ADD_PRODUCT}</Button>
-                </Link>
-            </div>
+            <Typography className="sb-heading" variant="h5">
+                {PRODUCT_TABLE_TITLE}
+            </Typography>
+            <Link to="/new-product" className="sb-link">
+                <Button variant="contained" color="primary">{TEXT_ADD_PRODUCT}</Button>
+            </Link>
+        </div>
     );
 };
 

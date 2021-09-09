@@ -10,14 +10,14 @@ import './ShopBridgeSummary.scss';
 
 const ShopBridgeSummary = () => {
     return (
-        <section className="summary-container">
-            <Typography variant="h4">
+        <section className="sb-summary-container">
+            <Typography variant="h4" className="sb-summary-block">
                 {SUMMARY_HEADING}
             </Typography>
-            <Typography variant="h5">
+            <Typography variant="h5" className="sb-summary-block">
                 {SUMMARY_SUB_HEADING}
             </Typography>
-            <Typography variant="body1">
+            <Typography variant="body1" className="sb-summary-block">
                 {SUMMARY}
             </Typography>
         </section>

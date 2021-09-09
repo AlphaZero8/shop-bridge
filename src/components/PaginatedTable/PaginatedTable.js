@@ -111,7 +111,7 @@ const PaginatedTable = () => {
     };
 
     let content;
-    console.log(products);
+    // console.log(products);
 
     if (loading === 'pending') {
         content = <LoadingTable data-testid="table-loading" rowCount={rowsPerPage} />;
@@ -233,7 +233,9 @@ const PaginatedTable = () => {
     }
 
     return (
-        <div className="sb-paginated-table-container">
+        <div
+        data-testid="component-paginated-table"
+        className="sb-paginated-table-container">
             <ProductTableHeader />
             {content}
         </div>
