@@ -1,0 +1,20 @@
+version: "3.8"
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: app 
+    ports: 
+      - "3000:3000"
+
+  server:
+    image: clue/json-server
+    container_name: server
+    command: '--watch'
+    working_dir: /data
+    ports: 
+      - "5000:80"
+    volumes:
+    - /Users/vi20111914/react-projects/shop-bridge/src/assets/db.json:/data/db.json
