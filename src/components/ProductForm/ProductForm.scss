@@ -1,0 +1,43 @@
+.sb-product-form {
+    margin: 0 auto 2rem;
+    display: flex;
+    flex-flow: column;
+    width: 40%;
+
+    .sb-product-form-field {
+        margin: 1rem;
+    }
+
+    .sb-form-button-group {
+        margin: 1rem 1rem 0 1rem;
+        display: flex;
+        justify-content: space-between;
+        
+        .sb-submit-button-wrapper {
+            position: relative;
+
+            .sb-button-progress {
+                color: green;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                margin: -12px 0 0 -12px;
+            }
+        }
+    }
+}
+
+@media (max-width: 28.125em) {
+    .sb-product-form {
+        .sb-form-button-group {
+            margin: 1rem 1rem 0 1rem;
+            display: flex;
+            flex-direction: column;
+            width: auto;
+
+            * + * {
+                margin-top: 1rem;
+            }
+        }
+    }
+}
