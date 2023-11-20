@@ -5,7 +5,13 @@ import App from './App';
 describe('<HomePage />', () => {
     describe('render', () => {
         beforeEach(() => {
+            jest.useFakeTimers();
             render(<App />);
+        });
+
+        afterEach(() => {
+            jest.runOnlyPendingTimers();
+            jest.useRealTimers();
         });
     
         it('renders `<Header />` component', () => {

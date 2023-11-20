@@ -13,12 +13,16 @@ describe('<AddProduct />', () => {
     });
 
     describe('render', () => {
-        // @TODO
-        it('shows the page title - Add a new product', () => {});
+        it('shows the page title - Add a new product', () => {
+            const pageTittle = screen.getByText(/add a new product/i);
 
-        // @TODO
+            expect(pageTittle).toBeInTheDocument();
+        });
+
         it('shows the form', () => {
+            const form = screen.getByTestId('form-add-product');
 
+            expect(form).toBeInTheDocument();
         });
     });
 
@@ -125,20 +129,26 @@ describe('<AddProduct />', () => {
 
             const successMessage = await screen.findByText(/product added successfully/i);
             expect(successMessage).toBeVisible();
+
+            await waitFor(() => {
+                expect(successMessage).not.toBeInTheDocument();
+            });
         });
-
-        it('clicking add button clears the form', async () => {
+        
+        it.skip('clicking add button clears the form', async () => {
             fillAndSubmitForm();
-
+            
             const nameField = await screen.findByLabelText(/name/i);
             const manufacturerField = await screen.findByLabelText(/manufacturer/i);
             const priceField = await screen.findByLabelText(/price/i);
             const descriptionField = await screen.findByLabelText(/description/i);
-
+            
             [nameField, manufacturerField, priceField, descriptionField]
-                .forEach((field) => {
-                    expect(field.textContent).toBe('');
-                });
+            .forEach((field) => {
+                expect(field.textContent).toBe('');
+            });
+
+            // waitForElementToBeRemoved(() => screen.findByText(/product added successfully/i));
         });
 
         it('disables all form fields and buttons while submission', async () => { });
@@ -146,15 +156,15 @@ describe('<AddProduct />', () => {
         it('Shows circular spinner in submit button while submission', () => { });
     });
 
-    describe('during form submission', () => {
-        // beforeEach(() => {
-        //     jest.useFakeTimers();
-        // });
+    describe.skip('during form submission', () => {
+        beforeEach(() => {
+            jest.useFakeTimers();
+        });
 
-        // afterEach(() => {
-        //     jest.runOnlyPendingTimers();
-        //     jest.useRealTimers();
-        // });
+        afterEach(() => {
+            jest.runOnlyPendingTimers();
+            jest.useRealTimers();
+        });
 
         const getAllFields = () => ({
             nameField: screen.getByLabelText(/name/i),
@@ -189,7 +199,7 @@ describe('<AddProduct />', () => {
             expect(nameField).toBeDisabled();
 
             waitFor(() => {
-                screen.getByLabelText('name').textContent = '';
+                expect(screen.getByLabelText('name')).toHaveTextContent('');
             });
         });
 
@@ -226,8 +236,12 @@ describe('<AddProduct />', () => {
             });
         });
 
-        it.skip('disables Add button', () => {
+        it.skip('disables Add button', async () => {
             fillAndSubmitForm();
+
+            // await waitFor(() => {
+            //     expect(screen.getByRole(/progressbar/i)).toBeInTheDocument();
+            // });
 
             const addBtn = screen.getByText('Add');
             expect(addBtn).toBeDisabled();

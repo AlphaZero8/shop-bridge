@@ -1,6 +1,4 @@
 import axios from 'axios';
-console.log('mock axios module', axios);
-console.log('sample axios get respose', axios.get());
 
 const processError = (err) => {
     if (err.response) {
@@ -23,12 +21,13 @@ const processError = (err) => {
 };
 
 export const getProducts = async () => {
-    console.log('in getProducts');
+    // console.log('in getProducts');
     try {
         const response = await axios.get('http://localhost:5000/products');
-        console.log(response);
+        // console.log('api res', response);
         return response;
     } catch (err) {
+        // console.log('api error', err);
         return processError(err);
     }
 };
@@ -52,6 +51,7 @@ export const updateProduct = async (productId, data) => {
 export const deleteProduct = async (productId) => {
     try {
         await axios.delete(`http://localhost:5000/products/${productId}`);
+        // console.log(apiRes);
     } catch (err) {
         return processError(err);
     }
