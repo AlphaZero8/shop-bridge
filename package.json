@@ -24,11 +24,12 @@
     "yup": "^0.32.9"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "server": "cd src/assets && json-server -w db.json -p 5000",
+    "frontend": "react-scripts start",
+    "start": "concurrently --kill-others \"yarn run server\" \"yarn run frontend\"",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "server": "cd src/assets && json-server -w db.json -p 5000"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [
@@ -49,6 +50,7 @@
     ]
   },
   "devDependencies": {
+    "concurrently": "^8.2.2",
     "msw": "^0.35.0"
   }
 }

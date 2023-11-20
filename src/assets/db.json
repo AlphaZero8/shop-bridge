@@ -3,7 +3,7 @@
     {
       "id": "457e351d-7feb-48d7-8b64-bd1885bcd49e",
       "name": "Galaxy M31",
-      "description": "A smartphone brand",
+      "description": "A smartphone brand!",
       "manufacturer": "Samsung",
       "price": 17500
     },
@@ -17,7 +17,7 @@
     {
       "id": "0e9c5f17-cfcf-4892-a767-25737fb878c2",
       "name": "Dell Inspiron",
-      "description": "A laptop",
+      "description": "A laptop!",
       "manufacturer": "Dell Inc",
       "price": 50000
     },
