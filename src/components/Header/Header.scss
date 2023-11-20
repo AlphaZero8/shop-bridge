@@ -1,0 +1,50 @@
+@import "../../constants/scss/colors.scss";
+
+.sb-header-container {
+    background-color: $airforce-blue;
+    color: white;
+    justify-content: space-between;
+
+    .sb-heading {
+        color: white;
+    }
+
+    .sb-action-button-group {
+        width: 20rem;
+        display: flex;
+        justify-content: space-between;
+    }
+}
+
+.sb-hamburger-icon-container,
+svg.sb-hamburger-icon {
+    display: none;
+}
+
+@media (max-width: 37.5em) {
+    .sb-header-container {
+        justify-content: flex-start;
+
+        .sb-action-button-group {
+            display: none;
+        }
+    }
+
+    .sb-hamburger-icon-container {
+        display: block;
+
+        svg.sb-hamburger-icon {
+            display: block;
+            cursor: pointer;
+            margin-right: 1rem;
+        }
+    }
+
+    .sb-drawer {
+        background: $airforce-blue;
+
+        .sb-link {
+            color: white;
+        }
+    }
+}
