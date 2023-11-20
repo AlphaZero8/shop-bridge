@@ -130,13 +130,15 @@ export const fetchProducts = () => async (dispatch, getState) => {
         console.log('no products found -> in else');
         // setTimeout(async () => {
             try {
-                const response = await productsApi.getProducts();
                 await timeout(3000);
+                const response = await productsApi.getProducts();
                 console.log('fetchProducts response', response);
 
                 dispatch(productsReceived(response.data));
             } catch (err) {
                 dispatch(productsLoadingFailed(err));
+
+                return Promise.reject(err);
             }
         // }, 3000);
     }
@@ -180,7 +182,7 @@ export const addProduct = (inputData) => async (dispatch, getState) => {
             //     return Promise.reject({ duplicateNameEror: null, ...err });
             // });
             // is it needed to return this?
-            // return response.data;
+            return response.data;
         } catch (err) {
             dispatch(productAddFailed());
 
