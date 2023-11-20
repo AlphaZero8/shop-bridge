@@ -1,0 +1,9 @@
+.sb-table-header {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+    * + * {
+        margin-left: 1rem;
+    }
+}
