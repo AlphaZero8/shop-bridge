@@ -8,7 +8,7 @@ import TableCell from '@material-ui/core/TableCell';
 
 import { PRODUCT_TABLE_HEADER_DATA } from '../../constants/productConstants';
 
-const LoadingTable = ({ rowCount }) => {
+const LoadingTable = ({ rowCount, 'data-testid': dataTestId }) => {
     const generateCells = () => {
         const cells = [];
         for (let count = 0; count < PRODUCT_TABLE_HEADER_DATA.length; count++) {
@@ -33,7 +33,7 @@ const LoadingTable = ({ rowCount }) => {
 
     return (
         <>
-            <TableContainer className="sb-table-container">
+            <TableContainer data-testid={dataTestId} className="sb-table-container">
                 <Table stickyHeader aria-label="sticky table">
                     <TableHead>
                         <TableRow>

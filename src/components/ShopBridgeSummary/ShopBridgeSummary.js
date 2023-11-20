@@ -1,3 +1,5 @@
+import { Typography } from '@material-ui/core';
+
 import {
     SUMMARY,
     SUMMARY_HEADING,
@@ -9,9 +11,15 @@ import './ShopBridgeSummary.scss';
 const ShopBridgeSummary = () => {
     return (
         <section className="summary-container">
-            <h2>{SUMMARY_HEADING}</h2>
-            <h3>{SUMMARY_SUB_HEADING}</h3>
-            <p>{SUMMARY}</p>
+            <Typography variant="h4">
+                {SUMMARY_HEADING}
+            </Typography>
+            <Typography variant="h5">
+                {SUMMARY_SUB_HEADING}
+            </Typography>
+            <Typography variant="body1">
+                {SUMMARY}
+            </Typography>
         </section>
     );
 };
