@@ -68,7 +68,7 @@ describe('<EditProduct />', () => {
         });
 
         it('shows error if no update\'s being made', async () => {
-            console.log('TEST1 start');
+            // console.log('TEST1 start');
             await waitFor(() => {
                 screen.getByDisplayValue(/p1/i);
             });
@@ -83,11 +83,11 @@ describe('<EditProduct />', () => {
             await waitFor(() => {
                 expect(errorMessage).not.toBeInTheDocument();
             });
-            console.log('TEST1 end');
+            // console.log('TEST1 end');
         });
 
         it('shows success if product is updated successfully', async () => {
-            console.log('TEST2 start');
+            // console.log('TEST2 start');
             await waitFor(() => {
                 screen.getByDisplayValue(/p1/i);
             });
@@ -106,7 +106,7 @@ describe('<EditProduct />', () => {
             await waitFor(() => {
                 expect(successMessage).not.toBeInTheDocument();
             });
-            console.log('TEST2 end');
+            // console.log('TEST2 end');
         });
 
         it('shows error if the product is updated to an already existing product', async () => {

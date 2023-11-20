@@ -25,7 +25,7 @@ const LoadingTable = ({ rowCount, 'data-testid': dataTestId }) => {
         const rows = [];
         for (let count = 0; count < rowCount; count++) {
             rows.push(
-                <TableRow key={count}>{generateCells()}</TableRow>
+                <TableRow data-testid="loading-table-body-row" key={count}>{generateCells()}</TableRow>
             );
         }
         return rows;
@@ -33,12 +33,13 @@ const LoadingTable = ({ rowCount, 'data-testid': dataTestId }) => {
 
     return (
         <>
-            <TableContainer data-testid={dataTestId} className="sb-table-container">
+            <TableContainer data-testid={dataTestId || 'component-loading-table'} className="sb-table-container">
                 <Table stickyHeader aria-label="sticky table">
                     <TableHead>
                         <TableRow>
                             {PRODUCT_TABLE_HEADER_DATA.map((column) => (
                                 <TableCell
+                                    data-testid="loading-table-heading-cell"
                                     key={column.id}
                                     colSpan={column.colSpan}
                                 >
@@ -52,7 +53,12 @@ const LoadingTable = ({ rowCount, 'data-testid': dataTestId }) => {
                     </TableBody>
                 </Table>
             </TableContainer>
-            <Skeleton style={{ position: 'absolute', right: '4.5rem' }} width="20%" height={25} />
+            <Skeleton
+                data-testid="loading-table-pagination"
+                style={{ position: 'absolute', right: '5.95rem' }}
+                width="20%"
+                height={25}
+            />
         </>
     );
 };

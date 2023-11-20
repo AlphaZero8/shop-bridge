@@ -119,25 +119,25 @@ const timeout = (ms) => {
 };
 
 export const fetchProducts = () => async (dispatch, getState) => {
-    console.log('in fetchProducts');
+    // console.log('in fetchProducts');
     dispatch(productsLoading());
     const state = await getState();
     const products = state.products.products;
-    console.log(products);
+    // console.log(products);
 
     if (products.length) {
         return dispatch(productsReceived(products));
     } else {
-        console.log('no products found -> in else');
+        // console.log('no products found -> in else');
         // setTimeout(async () => {
             try {
                 await timeout(3000);
                 const response = await productsApi.getProducts();
-                console.log('fetchProducts response', response);
+                // console.log('fetchProducts response', response);
 
                 dispatch(productsReceived(response.data));
             } catch (err) {
-                console.log('error', err);
+                // console.log('error', err);
                 dispatch(productsLoadingFailed(err));
 
                 return Promise.reject(err);
@@ -199,9 +199,9 @@ export const editProduct = (productId, inputData) => async (dispatch, getState) 
     const state = await getState();
     const products = state.products.products;
 
-    console.log('products in state', products);
-    console.log('productId received in params', productId);
-    console.log('inputData received in params', inputData);
+    // console.log('products in state', products);
+    // console.log('productId received in params', productId);
+    // console.log('inputData received in params', inputData);
 
     const isDuplicate = products.some(product => (
         product.name === inputData.name
@@ -209,7 +209,7 @@ export const editProduct = (productId, inputData) => async (dispatch, getState) 
         && product.id !== productId
     ));
 
-    console.log('isduplicate', isDuplicate);
+    // console.log('isduplicate', isDuplicate);
 
     if (isDuplicate) {
         dispatch(productUpdateFailed());

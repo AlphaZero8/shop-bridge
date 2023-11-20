@@ -36,12 +36,12 @@ const EditProduct = () => {
     const dispatch = useDispatch();
     const { productId } = useParams();
     const products = useSelector(state => state.products.products);
-    console.log(products);
+    // console.log(products);
     const loading = useSelector(state => state.products.loading);
     const mountedRef = useRef();
 
     useEffect(() => {
-        console.log('in useEffect 1', products);
+        // console.log('in useEffect 1', products);
         const loadProducts = async () => {
             try {
                 await dispatch(fetchProducts());
@@ -57,9 +57,9 @@ const EditProduct = () => {
     }, [dispatch, products]);
 
     useEffect(() => {
-        console.log('in useEffect 2', products);
+        // console.log('in useEffect 2', products);
         const match = products.find(product => product.id === productId);
-        console.log(match);
+        // console.log(match);
         setMatchingProduct(match);
     }, [products, productId]);
 
@@ -93,18 +93,18 @@ const EditProduct = () => {
         delete matchingProductCopy.id;
         const hasChanged = JSON.stringify(matchingProductCopy) !== JSON.stringify(values);
 
-        console.log(hasChanged);
+        // console.log(hasChanged);
         if (hasChanged) {
                 try {
-                    console.log('in try, matching product', matchingProduct);
+                    // console.log('in try, matching product', matchingProduct);
                     await dispatch(editProduct(matchingProduct.id, values));
 
                     setSnackbarMessage('Product edited successfully! :)');
                     setSnackbarSeverity('success');
                     setSnackbarOpen(true);
                 } catch (err) {
-                    console.log('in catch');
-                    console.log(err);
+                    // console.log('in catch');
+                    // console.log(err);
                     const { duplicateProductError, apiError } = err;
     
                     if (duplicateProductError) {
