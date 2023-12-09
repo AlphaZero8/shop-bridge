@@ -22,4 +22,4 @@ You can view all the products available in the database, add a new product, edit
 
 ### Live demo
 
-[Codesandbox link](https://codesandbox.io/p/sandbox/confident-dawn-qnw869) (works in Chrome)
+[Codesandbox link](https://codesandbox.io/p/sandbox/github/AlphaZero8/shop-bridge) (works in Chrome)
