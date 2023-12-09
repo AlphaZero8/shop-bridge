@@ -19,3 +19,7 @@ You can view all the products available in the database, add a new product, edit
 
 1. Navigate to the cloned project.
 2. Run `yarn start`.
+
+### Live demo
+
+[Codesandbox link](https://codesandbox.io/p/sandbox/confident-dawn-qnw869) (works in Chrome)
