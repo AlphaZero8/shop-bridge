@@ -24,7 +24,7 @@
     "yup": "^0.32.9"
   },
   "scripts": {
-    "server": "cd src/assets && json-server -w db.json -p 5000",
+    "server": "node ./src/api/server.js",
     "frontend": "react-scripts start",
     "start": "concurrently --kill-others \"yarn run server\" \"yarn run frontend\"",
     "build": "react-scripts build",
